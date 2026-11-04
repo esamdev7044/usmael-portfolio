@@ -1,69 +1,148 @@
-import Image from "next/image";
+import { Globe, Server, Smartphone } from "lucide-react";
+import { CopyEmail } from "@/components/copy-email";
+import { Experience } from "@/components/sections/Experience";
+import { Hero } from "@/components/sections/Hero";
+import { MobileNav } from "@/components/mobile-nav";
+import { ProjectCard } from "@/components/ui/ProjectsCard";
+import { Reveal } from "@/components/reveal";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { Section } from "@/components/section";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { TechStack } from "@/components/sections/TechStach";
+import {
+  education,
+  experience,
+  links,
+  profile,
+  projects,
+  stack,
+} from "@/lib/data";
+
+const services = [
+  {
+    icon: Globe,
+    title: "Web apps",
+    text: "Next.js and React frontends that load fast and stay accessible.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile apps",
+    text: "Flutter and native Android apps built for real-world networks.",
+  },
+  {
+    icon: Server,
+    title: "APIs & backends",
+    text: "Node.js services, database design, and system architecture.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <ScrollProgress />
+      <div className="mx-auto max-w-7xl px-3 md:grid md:grid-cols-[22rem_minmax(0,1fr)] md:gap-20 md:px-12">
+        <Sidebar />
+
+        <main id="main" className="pb-10 pt-6 md:py-20">
+          <div id="home">
+            <Hero />
+          </div>
+          <Section
+            id="work"
+            title="Selected Projects"
+            description="A look at the products, platforms, and systems I've built to solve real-world problems."
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {projects.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06} className="h-full">
+                <ProjectCard project={p} index={i} />
+              </Reveal>
+            ))}
+          </Section>
+
+          <Section id="about" title="About">
+            <Reveal>
+              <div className="max-w-2xl space-y-4 leading-relaxed text-muted">
+                <p>
+                  I am a software engineer who enjoys the full path from idea to
+                  production: designing the system, modeling the data, and
+                  building interfaces people actually enjoy using.
+                </p>
+                <p>
+                  Most of my work is for the Ethiopian market, where speed on
+                  slower networks, reliability, and local payment and banking
+                  flows matter.
+                </p>
+              </div>
+            </Reveal>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+              {services.map(({ icon: Icon, title, text }, i) => (
+                <Reveal key={title} delay={i * 0.06}>
+                  <li className="h-full list-none rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-brand-text/60">
+                    <Icon className="size-5 text-brand-text" aria-hidden />
+                    <h3 className="mt-4 font-display font-semibold">{title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                      {text}
+                    </p>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </Section>
+
+          <Section id="experience" title="Experience">
+            <Reveal>
+              <Experience items={experience} />
+            </Reveal>
+          </Section>
+
+          <Section id="education" title="Education">
+            <Reveal>
+              <ul className="divide-y divide-border border-y border-border">
+                {education.map((e) => (
+                  <li
+                    key={e.school}
+                    className="flex flex-wrap items-baseline justify-between gap-2 py-5"
+                  >
+                    <div>
+                      <h3 className="font-display text-md font-semibold">
+                        {e.school}
+                      </h3>
+                      <p className="text-sm text-muted">{e.degree}</p>
+                    </div>
+                    <p className="font-mono text-xs text-muted">{e.period}</p>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </Section>
+
+          <Section id="tech-stack" title="Tech stack">
+            <Reveal>
+              <TechStack groups={stack} />
+            </Reveal>
+          </Section>
+
+          <Section id="contact" title="Contact">
+            <Reveal>
+              <p className="max-w-xl leading-relaxed text-muted">
+                Have a project, a role, or an idea? Let&apos;s talk. I usually
+                reply within a day.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+                <CopyEmail email={profile.email} />
+                <a
+                  href={links.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm underline decoration-brand-text decoration-2 underline-offset-4 transition-colors hover:text-brand-text"
+                >
+                  Message on Telegram
+                </a>
+              </div>
+            </Reveal>
+          </Section>
+        </main>
+      </div>
+    </>
   );
 }
