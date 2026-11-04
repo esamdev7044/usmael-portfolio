@@ -1,4 +1,3 @@
-// src/components/section.tsx
 import { Reveal } from "@/components/reveal";
 
 export function Section({

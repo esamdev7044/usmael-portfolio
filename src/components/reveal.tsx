@@ -1,4 +1,3 @@
-// src/components/reveal.tsx
 "use client";
 
 import * as m from "motion/react-m";

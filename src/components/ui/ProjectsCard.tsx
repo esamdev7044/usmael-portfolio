@@ -6,14 +6,6 @@ import { ArrowUpRight, Circle } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/data";
 
-function getHost(url: string) {
-  try {
-    return new URL(url).host.replace(/^www\./, "");
-  } catch {
-    return url;
-  }
-}
-
 interface ProjectCardProps {
   project: Project;
   index: number;

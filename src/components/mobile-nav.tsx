@@ -13,9 +13,24 @@ export function MobileNav() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    ref.current
-      ?.querySelector<HTMLElement>("[aria-current='true']")
-      ?.scrollIntoView({ inline: "center", block: "nearest" });
+    const navElement = ref.current;
+    const activeLink = navElement?.querySelector<HTMLElement>(
+      "[aria-current='true']",
+    );
+
+    if (!navElement || !activeLink) return;
+
+    const navRect = navElement.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+
+    navElement.scrollTo({
+      left:
+        navElement.scrollLeft +
+        linkRect.left -
+        navRect.left -
+        (navElement.clientWidth - activeLink.clientWidth) / 2,
+      behavior: "smooth",
+    });
   }, [active]);
 
   return (
