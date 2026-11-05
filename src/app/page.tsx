@@ -2,21 +2,16 @@ import { Globe, Server, Smartphone } from "lucide-react";
 import { CopyEmail } from "@/components/copy-email";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
-import { MobileNav } from "@/components/mobile-nav";
 import { ProjectCard } from "@/components/ui/ProjectsCard";
 import { Reveal } from "@/components/reveal";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Section } from "@/components/section";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TechStack } from "@/components/sections/TechStach";
-import {
-  education,
-  experience,
-  links,
-  profile,
-  projects,
-  stack,
-} from "@/lib/data";
+import { links, profile, projects, stack } from "@/lib/data";
+import { experience } from "@/lib/data/experience";
+import { Education } from "@/components/sections/Education";
+import { education } from "@/lib/data/education";
 
 const services = [
   {
@@ -53,31 +48,61 @@ export default function Home() {
             description="A look at the products, platforms, and systems I've built to solve real-world problems."
           >
             {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.06} className="h-full">
+              <Reveal key={p.title} delay={i * 0.06} className="h-full mt-3">
                 <ProjectCard project={p} index={i} />
               </Reveal>
             ))}
           </Section>
-
           <Section id="about" title="About">
             <Reveal>
               <div className="max-w-2xl space-y-4 leading-relaxed text-muted">
                 <p>
-                  I am a software engineer who enjoys the full path from idea to
-                  production: designing the system, modeling the data, and
-                  building interfaces people actually enjoy using.
+                  My journey in Software Engineering has been about more than
+                  just earning a degree. Along the way, I have explored new
+                  technologies, strengthened my problem-solving skills, and
+                  learned how to turn academic knowledge into real-world
+                  solutions
                 </p>
                 <p>
-                  Most of my work is for the Ethiopian market, where speed on
-                  slower networks, reliability, and local payment and banking
-                  flows matter.
+                  I started building personal projects in my second year of
+                  university. Through countless hours of learning,
+                  experimenting, and refining my skills, I have grown into a
+                  developer capable of building complex, distributed systems. My
+                  internship experiences have also given me valuable insights
+                  into how real-world engineering teams operate, collaborate,
+                  and make technical decisions.
+                </p>
+                <p>
+                  I have had the opportunity to build several systems, including
+                  <strong> WorkBridge</strong> - a recruitment platform
+                  connecting job seekers with employers,{" "}
+                  <strong>Warafa Cloud</strong> - a multi-tenant queue
+                  management SaaS for organizations, <strong>EtechCamp</strong>{" "}
+                  - an AI-assisted, multilingual learning platform,{" "}
+                  <strong>Walin Tour</strong> - a group tour platform designed
+                  to simplify travel for tourists, and <strong>Gullit</strong> -
+                  an e-commerce mobile application connecting farmers directly
+                  with markets.
+                </p>
+                <p>
+                  My development journey began with PHP, but today, most of my
+                  work revolves around JavaScript and TypeScript, using
+                  technologies such as Node.js, React, and Next.js. I enjoy
+                  working with relational databases, particularly PostgreSQL,
+                  and have a strong interest in backend engineering, API design,
+                  database architecture, and software system design.
+                </p>
+                <p>
+                  I&appos;m based in Ethiopia and open to local and global
+                  opportunities, including remote roles, where I can contribute,
+                  collaborate, and continue growing as a Software Engineer.
                 </p>
               </div>
             </Reveal>
             <ul className="mt-8 grid gap-4 sm:grid-cols-3">
               {services.map(({ icon: Icon, title, text }, i) => (
                 <Reveal key={title} delay={i * 0.06}>
-                  <li className="h-full list-none rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-brand-text/60">
+                  <li className="h-full list-none rounded-2xl border border-border bg-surface p-5">
                     <Icon className="size-5 text-brand-text" aria-hidden />
                     <h3 className="mt-4 font-display font-semibold">{title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -88,40 +113,25 @@ export default function Home() {
               ))}
             </ul>
           </Section>
-
-          <Section id="experience" title="Experience">
-            <Reveal>
-              <Experience items={experience} />
-            </Reveal>
+          <Section
+            id="experience"
+            title="Experience"
+            description="Roles where I shipped production features and collaborated with teams."
+          >
+            <Experience items={experience} />
           </Section>
-
-          <Section id="education" title="Education">
-            <Reveal>
-              <ul className="divide-y divide-border border-y border-border">
-                {education.map((e) => (
-                  <li
-                    key={e.school}
-                    className="flex flex-wrap items-baseline justify-between gap-2 py-5"
-                  >
-                    <div>
-                      <h3 className="font-display text-md font-semibold">
-                        {e.school}
-                      </h3>
-                      <p className="text-sm text-muted">{e.degree}</p>
-                    </div>
-                    <p className="font-mono text-xs text-muted">{e.period}</p>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+          <Section
+            id="education"
+            title="Education"
+            description="Academic background and the foundations behind my engineering work."
+          >
+            <Education items={education} />
           </Section>
-
           <Section id="tech-stack" title="Tech stack">
             <Reveal>
               <TechStack groups={stack} />
             </Reveal>
           </Section>
-
           <Section id="contact" title="Contact">
             <Reveal>
               <p className="max-w-xl leading-relaxed text-muted">

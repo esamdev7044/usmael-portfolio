@@ -81,7 +81,7 @@ export function Sidebar() {
             <p className="font-display text-xl font-bold leading-tight tracking-tight">
               {profile.name}
             </p>
-            <p className="mt-1 text-xs text-muted">{profile.role}</p>
+            <p className="mt-1 text-sm md:text-xs text-muted">{profile.role}</p>
             <p className="mt-1.5 flex items-center gap-1.5 font-mono text-xs text-muted">
               <MapPin className="size-3.5" aria-hidden />
               {profile.location} · <LocalTime timeZone={profile.timeZone} />
