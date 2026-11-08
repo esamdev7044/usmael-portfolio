@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight, Circle } from "lucide-react";
 
 import { GithubIcon } from "@/components/ui/icons";
-import type { Project } from "@/lib/data";
+import type { Project } from "@/lib/data/projects";
 
 interface ProjectCardProps {
   project: Project;
