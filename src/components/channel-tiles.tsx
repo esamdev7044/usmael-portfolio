@@ -1,4 +1,3 @@
-// src/components/contact/channel-tiles.tsx
 import { ArrowUpRight, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 import { links } from "@/lib/data";
