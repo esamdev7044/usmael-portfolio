@@ -37,13 +37,24 @@ export function Hero() {
         Engineering fast,{" "}
         <span className="relative inline-block">
           dependable
-          <m.span
-            aria-hidden
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
-            className="absolute inset-x-0 bottom-[-0.04em] h-[0.12em] origin-left rounded-full bg-brand"
-          />
+          <m.svg
+            aria-hidden="true"
+            viewBox="0 0 220 14"
+            preserveAspectRatio="none"
+            className="absolute bottom-[-0.12em] left-0 h-[0.16em] w-full overflow-visible"
+          >
+            <m.path
+              d="M3 9 C35 2, 55 12, 88 7 S145 3, 175 7 S205 5, 218 3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="7"
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+              className="text-brand"
+            />
+          </m.svg>
         </span>{" "}
         software from database to interface.
       </h1>
