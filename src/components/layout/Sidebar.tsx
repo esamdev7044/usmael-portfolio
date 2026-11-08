@@ -1,4 +1,3 @@
-// src/components/sidebar.tsx
 "use client";
 
 import Image from "next/image";
@@ -66,7 +65,8 @@ export function Sidebar() {
   const active = useActiveSection(sectionIds);
 
   return (
-    <aside className="no-scrollbar flex flex-col gap-3 md:pb-6 pt-5 md:sticky md:top-0 md:h-dvh md:gap-4 md:overflow-y-auto md:py-8 md:[@media(max-height:700px)]:py-5">
+    <>
+    <aside className="no-scrollbar flex flex-col mb-3 gap-3 md:pb-6 pt-5 md:sticky md:top-0 md:h-dvh md:gap-4 md:overflow-y-auto md:py-8 md:[@media(max-height:700px)]:py-5">
       <div className="md:shrink-0">
         <div className="flex items-center pb-0 gap-4 md:flex-col md:items-start md:gap-3 lg:flex-row lg:items-center lg:gap-4">
           <Image
@@ -93,8 +93,6 @@ export function Sidebar() {
           {profile.bio}
         </p>
       </div>
-
-      <MobileNav />
 
       <nav
         aria-label="Primary"
@@ -164,7 +162,7 @@ export function Sidebar() {
                 {...(href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="grid size-10 place-items-center rounded-xl border border-border bg-surface text-muted transition hover:-translate-y-0.5 hover:border-brand-text hover:text-fg"
+                className="grid size-10 place-items-center rounded-xl border border-border bg-surface text-muted transition hover:border-brand-text hover:text-fg"
               >
                 <Icon className="size-4.5" />
               </a>
@@ -186,5 +184,7 @@ export function Sidebar() {
         </div>
       </div>
     </aside>
+    <MobileNav />
+    </>
   );
 }

@@ -1,5 +1,4 @@
 import { Globe, Server, Smartphone } from "lucide-react";
-import { CopyEmail } from "@/components/copy-email";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { ProjectCard } from "@/components/ui/ProjectsCard";
@@ -8,10 +7,13 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { Section } from "@/components/section";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TechStack } from "@/components/sections/TechStach";
-import { links, profile, projects, stack } from "@/lib/data";
+import { projects } from "@/lib/data/projects";
 import { experience } from "@/lib/data/experience";
 import { Education } from "@/components/sections/Education";
 import { education } from "@/lib/data/education";
+import { stack } from "@/lib/data/tech-stack";
+import { Contact } from "@/components/contact";
+import { Footer } from "@/components/sections/Footer";
 
 const services = [
   {
@@ -102,7 +104,7 @@ export default function Home() {
             <ul className="mt-8 grid gap-4 sm:grid-cols-3">
               {services.map(({ icon: Icon, title, text }, i) => (
                 <Reveal key={title} delay={i * 0.06}>
-                  <li className="h-full list-none rounded-2xl border border-border bg-surface p-5">
+                  <li className="h-full list-none rounded-2xl border border-muted/30 bg-surface p-5">
                     <Icon className="size-5 text-brand-text" aria-hidden />
                     <h3 className="mt-4 font-display font-semibold">{title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -127,30 +129,21 @@ export default function Home() {
           >
             <Education items={education} />
           </Section>
-          <Section id="tech-stack" title="Tech stack">
-            <Reveal>
-              <TechStack groups={stack} />
-            </Reveal>
+          <Section
+            id="tech-stack"
+            title="Tech stack"
+            description="Core technologies, frameworks, and tooling I use in production."
+          >
+            <TechStack groups={stack} />
           </Section>
-          <Section id="contact" title="Contact">
-            <Reveal>
-              <p className="max-w-xl leading-relaxed text-muted">
-                Have a project, a role, or an idea? Let&apos;s talk. I usually
-                reply within a day.
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <CopyEmail email={profile.email} />
-                <a
-                  href={links.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm underline decoration-brand-text decoration-2 underline-offset-4 transition-colors hover:text-brand-text"
-                >
-                  Message on Telegram
-                </a>
-              </div>
-            </Reveal>
+          <Section
+            id="contact"
+            title="Contact"
+            description="Open to freelance projects, contract work, and full-time engineering roles. I usually reply within 24 hours."
+          >
+            <Contact />
           </Section>
+          <Footer />
         </main>
       </div>
     </>

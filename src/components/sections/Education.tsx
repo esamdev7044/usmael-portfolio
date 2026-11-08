@@ -1,4 +1,3 @@
-// src/components/education.tsx
 import { Timeline } from "@/components/timeline";
 import type { Edu } from "@/lib/data/education";
 

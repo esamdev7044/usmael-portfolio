@@ -1,9 +1,8 @@
-// src/components/timeline.tsx
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils/cn";
 
@@ -67,8 +66,7 @@ function Logo({
 
 function TimelineCard({ entry }: { entry: TimelineEntry }) {
   const ref = useRef<HTMLElement>(null);
-  const [open, setOpen] = useState(false);
-  const panelId = useId();
+
   const {
     title,
     url,
@@ -87,9 +85,12 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
 
   function onPointerMove(e: React.PointerEvent<HTMLElement>) {
     if (e.pointerType !== "mouse") return;
+
     const el = ref.current;
     if (!el) return;
+
     const r = el.getBoundingClientRect();
+
     el.style.setProperty("--x", `${e.clientX - r.left}px`);
     el.style.setProperty("--y", `${e.clientY - r.top}px`);
   }
@@ -98,11 +99,12 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
     <article
       ref={ref}
       onPointerMove={onPointerMove}
-      className="group relative isolate overflow-hidden rounded-2xl border border-border bg-surface p-5 sm:p-6"
+      className="group relative isolate overflow-hidden rounded-2xl border border-muted/30 bg-surface p-5 sm:p-6"
     >
       <header className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="flex min-w-0 items-center gap-4">
           <Logo title={title} logo={logo} fit={logoFit} />
+
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <h3 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
@@ -123,6 +125,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
                   title
                 )}
               </h3>
+
               {badge && (
                 <span
                   className={cn(
@@ -136,6 +139,7 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
                 </span>
               )}
             </div>
+
             <p className="mt-1 text-sm sm:text-base">
               {subtitle}
               {location && <span className="text-muted"> · {location}</span>}
@@ -160,38 +164,14 @@ function TimelineCard({ entry }: { entry: TimelineEntry }) {
 
       {highlights && highlights.length > 0 && (
         <div className="mt-4">
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls={panelId}
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-brand-text transition-opacity hover:opacity-80"
-          >
-            {open ? "Hide highlights" : "Key highlights"}
-            <ChevronDown
-              className={cn(
-                "size-4 transition-transform duration-300",
-                open && "rotate-180",
-              )}
-              aria-hidden
-            />
-          </button>
-          <div
-            id={panelId}
-            inert={!open}
-            className={cn(
-              "grid transition-[grid-template-rows] duration-300 ease-out",
-              open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-            )}
-          >
-            <div className="overflow-hidden">
-              <ul className="list-disc space-y-2 pb-1 pl-5 pt-3 text-muted marker:text-brand-text">
-                {highlights.map((h) => (
-                  <li key={h}>{h}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <p className="font-mono text-xs uppercase tracking-wider text-brand-text">
+            Key Achievements
+          </p>
+          <ul className="list-disc space-y-2 pl-5 pt-3 text-muted marker:text-brand-text">
+            {highlights.map((h) => (
+              <li key={h}>{h}</li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -219,10 +199,11 @@ export function Timeline({ entries }: { entries: TimelineEntry[] }) {
           <span
             aria-hidden
             className={cn(
-              "absolute left-0 top-8 size-[15px] rounded-full border-2 transition-colors",
+              "absolute left-0 top-8 size-3.75 rounded-full border-2 transition-colors",
               entry.current ? "border-brand bg-brand" : "border-border bg-bg",
             )}
           />
+
           <Reveal>
             <TimelineCard entry={entry} />
           </Reveal>

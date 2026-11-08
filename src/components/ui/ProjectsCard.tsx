@@ -18,7 +18,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <article
       aria-label={`${title}, project ${index + 1}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 transition-colors duration-300 sm:p-7"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-muted/30 bg-surface p-5 transition-colors duration-300 sm:p-7"
     >
       <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">

@@ -1,54 +1,73 @@
-// src/components/tech-stack.tsx
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence } from "motion/react";
-import * as m from "motion/react-m";
+import { Reveal } from "@/components/reveal";
+import type { IconData, StackGroup } from "@/lib/data/tech-stack";
 import { cn } from "@/lib/utils/cn";
 
-export function TechStack({ groups }: { groups: Record<string, string[]> }) {
-  const categories = ["All", ...Object.keys(groups)];
-  const [active, setActive] = useState("All");
-  const items =
-    active === "All" ? Object.values(groups).flat() : groups[active];
+function BrandIcon({ icon, name }: { icon?: IconData; name: string }) {
+  if (!icon) {
+    return (
+      <span
+        aria-hidden
+        className="grid size-5 place-items-center font-mono text-xs font-bold"
+      >
+        {name[0]}
+      </span>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="size-5">
+      <path d={icon.path} />
+    </svg>
+  );
+}
+
+function StackCard({ group }: { group: StackGroup }) {
 
   return (
-    <div>
-      <div className="mb-6 flex flex-wrap gap-2">
-        {categories.map((c) => (
-          <button
-            key={c}
-            type="button"
-            aria-pressed={active === c}
-            onClick={() => setActive(c)}
-            className={cn(
-              "rounded-full border px-3.5 py-1.5 font-mono text-xs transition active:scale-95",
-              active === c
-                ? "border-brand bg-brand text-brand-fg"
-                : "border-border bg-surface text-muted hover:border-brand-text hover:text-fg",
-            )}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
+    <article className="rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border/80 sm:p-6">
+      <header className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="mt-1 font-display text-xl font-semibold tracking-tight">
+            {group.title}
+          </h3>
+          <p className="mt-1 text-sm text-muted">{group.description}</p>
+        </div>
+      </header>
 
-      <ul className="flex flex-wrap gap-2">
-        <AnimatePresence initial={false}>
-          {items.map((t) => (
-            <m.li
-              key={t}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.18 }}
-              className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-            >
-              {t}
-            </m.li>
-          ))}
-        </AnimatePresence>
+      <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {group.tools.map((tool) => {
+          return (
+            <li key={tool.name} className="list-none">
+              <div
+                className={cn(
+                  "group flex w-full items-center gap-3 rounded-xl border border-muted/30 px-3 py-2.5 text-left text-sm transition-all duration-200 active:scale-[.97]",
+                )}
+              >
+                <span className={cn("shrink-0 transition-colors duration-200")}>
+                  <BrandIcon icon={tool.icon} name={tool.name} />
+                </span>
+                <div className="flex h-full min-h-14 flex-col justify-center">
+                  <span className="truncate">{tool.name}</span>
+                  <span className="text-muted">{tool.note}</span>
+                </div>
+              </div>
+            </li>
+          );
+        })}
       </ul>
+    </article>
+  );
+}
+
+export function TechStack({ groups }: { groups: StackGroup[] }) {
+  return (
+    <div className="grid gap-4">
+      {groups.map((group) => (
+        <Reveal key={group.title}>
+          <StackCard group={group} />
+        </Reveal>
+      ))}
     </div>
   );
 }
