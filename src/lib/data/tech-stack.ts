@@ -11,7 +11,6 @@ import {
   siGithub,
   siHtml5,
   siJavascript,
-  siKotlin,
   siMongodb,
   siMysql,
   siNestjs,
@@ -30,6 +29,11 @@ import {
   siVercel,
   siRailway,
   siSocketdotio,
+  siOpenaigym,
+  siGooglegemini,
+  siGoogle,
+  siStripe,
+  siPaypal,
 } from "simple-icons";
 
 export type IconData = {
@@ -66,11 +70,6 @@ export const stack: StackGroup[] = [
         name: "Java",
         note: "Object-oriented programming and Android development",
         icon: ic(siOpenjdk),
-      },
-      {
-        name: "Kotlin",
-        note: "Native Android development",
-        icon: ic(siKotlin),
       },
       {
         name: "Dart",
@@ -236,12 +235,12 @@ export const stack: StackGroup[] = [
       {
         name: "OpenAI",
         note: "LLM APIs and AI-powered application features",
-        icon: { src: "https://cdn.simpleicons.org/openai" },
+        icon: ic(siOpenaigym),
       },
       {
         name: "Google Gemini",
         note: "Generative AI and multimodal integrations",
-        icon: { src: "https://cdn.simpleicons.org/googlegemini" },
+        icon: ic(siGooglegemini),
       },
       {
         name: "Cloudinary",
@@ -251,7 +250,7 @@ export const stack: StackGroup[] = [
       {
         name: "Google OAuth",
         note: "Third-party authentication",
-        icon: { src: "https://cdn.simpleicons.org/google" },
+        icon: ic(siGoogle),
       },
     ],
   },
@@ -262,7 +261,7 @@ export const stack: StackGroup[] = [
       {
         name: "Stripe",
         note: "Online payments and checkout integration",
-        icon: { src: "https://cdn.simpleicons.org/stripe" },
+        icon: ic(siStripe),
       },
       {
         name: "Chapa",
@@ -271,7 +270,7 @@ export const stack: StackGroup[] = [
       {
         name: "PayPal",
         note: "Online payment processing",
-        icon: { src: "https://cdn.simpleicons.org/paypal" },
+        icon: ic(siPaypal),
       },
     ],
   },
