@@ -43,6 +43,12 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   productionBrowserSourceMaps: false,
 
+  compiler: {
+    removeConsole: {
+      exclude: ["error", "warn"],
+    },
+  },
+
   turbopack: {
     rules: {
       "*.css": {
