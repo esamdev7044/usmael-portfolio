@@ -5,7 +5,7 @@ import * as m from "motion/react-m";
 import { FormField, inputClass } from "@/components/form-field";
 import { FormSuccess } from "@/components/form-success";
 import { SubmitButton } from "@/components/submit-button";
-import { useContactForm } from "@/components/use-contact-form";
+import { useContactForm } from "@/hooks/use-contact-form";
 import { LIMITS } from "@/lib/data/contact";
 import { profile } from "@/lib/data";
 import { cn } from "@/lib/utils/cn";

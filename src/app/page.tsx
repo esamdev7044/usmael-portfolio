@@ -1,19 +1,19 @@
 import { Globe, Server, Smartphone } from "lucide-react";
-import { Experience } from "@/components/sections/Experience";
-import { Hero } from "@/components/sections/Hero";
+import { Experience } from "@/components/sections/experience";
+import { Hero } from "@/components/sections/hero";
 import { ProjectCard } from "@/components/ui/ProjectsCard";
 import { Reveal } from "@/components/reveal";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Section } from "@/components/section";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { TechStack } from "@/components/sections/TechStach";
+import { Sidebar } from "@/components/layout/sidebar";
+import { TechStack } from "@/components/sections/tech-stach";
 import { projects } from "@/lib/data/projects";
 import { experience } from "@/lib/data/experience";
-import { Education } from "@/components/sections/Education";
+import { Education } from "@/components/sections/education";
 import { education } from "@/lib/data/education";
 import { stack } from "@/lib/data/tech-stack";
 import { Contact } from "@/components/contact";
-import { Footer } from "@/components/sections/Footer";
+import { Footer } from "@/components/sections/footer";
 
 const services = [
   {
